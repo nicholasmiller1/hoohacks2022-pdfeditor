@@ -14,3 +14,9 @@ django-bootstrap-v5
 
 # Whitenoise (for hosting static files)
 whitenoise
+
+# pytesseract for converting canvas into a text searchable pdf
+pytesseract
+
+# Pillow for working with images
+Pillow
