@@ -15,3 +15,6 @@ whitenoise
 
 # Channels (for websockets support)
 channels
+
+# Channels_Redis (used to handle channel layers)
+channels_redis
