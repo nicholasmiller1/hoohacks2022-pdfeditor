@@ -13,9 +13,10 @@
 
     <script>
       const pdfName = JSON.parse(document.getElementById('pdf-name').textContent);
+      const ws_protocol = window.location.protocol == "https:" ? "wss://" : "ws://";
 
       const pdfEditSocket = new WebSocket(
-        'ws://'
+        ws_protocol
         + window.location.host
         + '/ws/editpdf/editor/'
         + pdfName
