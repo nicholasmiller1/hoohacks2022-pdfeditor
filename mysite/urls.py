@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from django.shortcuts import HttpResponseRedirect
+=======
+from django.shortcuts import redirect
+>>>>>>> main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('editpdf/', include('editpdf.urls'))
+    path('editpdf/', include('editpdf.urls')),
+    path('', lambda request: redirect('editpdf/', permanent=True))
 ]
