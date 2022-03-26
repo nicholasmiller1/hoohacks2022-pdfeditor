@@ -18,3 +18,9 @@ channels
 
 # Channels_Redis (used to handle channel layers)
 channels_redis
+
+# pytesseract for converting canvas into a text searchable pdf
+pytesseract
+
+# Pillow for working with images
+Pillow
