@@ -1,5 +1,21 @@
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'editpdf/base_styles.css' %}"/>
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block title %}<title>Home</title>{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{% static 'editpdf/base_styles.css' %}"/>
+    </head>
 
-<p>This is the home page.</p>
+    <body>
+
+        {% block content %}
+            <p>This is the home page.</p>
+        {% endblock %}
+
+    </body>
+
+</html>
