@@ -2,7 +2,42 @@
 
 {% block title %}<title>Editor</title>{% endblock %}
 
-
 {% block content %}
     <p> Edit Here </p>
+    <textarea id="message-display" cols="100" rows="20"></textarea>
+    <br/>
+    <input id="message-input" type="text" size="100">
+    <br/>
+    <button onclick="onClick()">Send</button>
+    {{ pdf_name|json_script:"pdf-name" }}
+
+    <script>
+      const pdfName = JSON.parse(document.getElementById('pdf-name').textContent);
+
+      const pdfEditSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/editpdf/editor/'
+        + pdfName
+        + '/'
+      );
+    
+      pdfEditSocket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        document.getElementById('message-display').value += (data.message + "\n");
+      }
+    
+      pdfEditSocket.onclose = function(event) {
+        console.log('Connection closed');
+      }
+    
+      function onClick() {
+        const messageElement = document.getElementById('message-input')
+        const message = messageElement.value;
+        pdfEditSocket.send(JSON.stringify({
+          'message': message
+        }));
+        messageElement.value = '';
+      }
+    </script>
 {% endblock %}
