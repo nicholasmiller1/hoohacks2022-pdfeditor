@@ -5,7 +5,7 @@
 
 {% block content %}
     <form enctype="multipart/form-data" method="post">
-      {% csrf_token %}
+      {% comment %} {% csrf_token %} {% endcomment %}
 
       <legend>
         <p>Upload PDF Here</p>
