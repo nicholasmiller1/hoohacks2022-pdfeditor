@@ -11,9 +11,9 @@
             </tr>
             <h5>Chat</h5>
             <tr>
-                <textarea id="message-display" cols="100" rows="20"></textarea>
+                <textarea id="message-display" cols="50" rows="20"></textarea>
                 <br/>
-                <input id="message-input" type="text" size="100">
+                <input id="message-input" type="text" size="50">
                 <br/>
                 <button onclick="onClick()">Send</button>
                 {{ pdf_name|json_script:"pdf-name" }}
@@ -27,10 +27,11 @@
         </div>
         <p> {{ pdf_name }} </p>
         <canvas id="editor" width="850" height="1100" onload="draw()">Browser does not support Canvas</canvas>
-    </div>
-    {% block scripts %}
+    </div> 
+{% endblock %}
+
+{% block scripts %}
         {% load static %}
         <script src="{% static 'editpdf/js/script.js' %}"></script>
         <script src="{% static 'editpdf/js/editor_scripts.js' %}"></script>
-    {% endblock %}  
-{% endblock %}
+    {% endblock %} 
