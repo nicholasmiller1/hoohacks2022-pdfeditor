@@ -1,14 +1,20 @@
-.text-tool {
-  font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-}
-
 #editor {
   cursor: crosshair;
   margin: 0 auto;
-  display: block;
+  display: inherit;
   border: 2px solid #000000;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+#pdf-view {
+  display: inherit;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 1;
 }
 
 .nav-buttons {
@@ -41,7 +47,14 @@ table {
 .tool {
   width: 40px;
   height: 40px;
-  padding: 10px;
+  margin: 10px;
+  padding: 5px;
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: auto;
+  justify-items: auto;
 }
 
 p {

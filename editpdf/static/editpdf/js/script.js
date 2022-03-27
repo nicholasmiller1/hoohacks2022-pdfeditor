@@ -4,6 +4,7 @@ var ctx = cvs.getContext("2d")
 var pen = document.getElementById("pen-tool")
 var text = document.getElementById("text-tool")
 var eraser = document.getElementById("eraser-tool")
+var download = document.getElementById("download-tool")
 var curX, curY, prevX, prevY
 var active_tool = 'pen'
 var hasInput = false, painting = false
@@ -12,20 +13,37 @@ var tool_size = 2
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
 eraser.addEventListener("click", function (e) {active_tool='eraser';})
+
+function updateBrushSize (size) {
+    tool_size = size;
+}
+download.addEventListener("click", function () {
+    var imageURL = cvs.toDataURL("image/png");
+    $.ajax({
+        type: "POST",
+        url: "../python/pdf-export/export.py",
+        data: {
+            param: imageURL,
+        }
+    }).done((o) => {
+        var filename = "output.pdf";
+        downloadPDF(filename, o);
+    });
+});
 //cvs.addEventListener("click", addtext)
 
 cvs.onclick = function(e) {
     if (active_tool=='text'){
         if (hasInput) return;
-        addText(e.clientX, e.clientY);
+        addText(e.pageX, e.pageY);
     }
 }
 
 cvs.onmousedown = function (e) {
     if (active_tool!='text') {
         painting = true
-        prevX = e.clientX - cvs.offsetLeft;
-        prevY = e.clientY - cvs.offsetTop;
+        prevX = e.pageX - cvs.offsetLeft;
+        prevY = e.pageY - cvs.offsetTop;
     }
 }
 
@@ -37,8 +55,8 @@ cvs.onmouseup = function (e) {
 cvs.onmousemove = function (e) {
     if (painting) {
         if (painting) {
-            mouseX = e.clientX - this.offsetLeft;
-            mouseY = e.clientY - this.offsetTop;
+            mouseX = e.pageX - this.offsetLeft;
+            mouseY = e.pageY - this.offsetTop;
     
             // find all points between        
             var x1 = mouseX,
@@ -84,14 +102,16 @@ cvs.onmousemove = function (e) {
                         ctx.fillStyle ='#FF0000';
                         ctx.fillRect(y, x, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.clearRect(y, x, tool_size , tool_size );
+                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillRect(y, x, tool_size , tool_size );
                     }
                 } else {
                     if (active_tool=="pen") {
                         ctx.fillStyle ='#FF0000';
                         ctx.fillRect(x, y, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.clearRect(x, y, tool_size , tool_size );
+                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillRect(x, y, tool_size , tool_size );
                     }
                 }
     
@@ -146,4 +166,13 @@ function drawText(txt, x, y) {
     ctx.font = '20px sans-serif';
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
     sendCanvas()
+}
+
+function downloadPDF(fileURL, fileName) {
+    var link = document.createElement('a');
+    link.href = fileURL;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
