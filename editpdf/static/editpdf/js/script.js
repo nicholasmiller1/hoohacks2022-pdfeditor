@@ -20,6 +20,7 @@ download.addEventListener("click", downloadPNG);
 function cvsColor(color) {
     if (color.length == 6) {
         erase_color = '#' + color;
+        ctx.fillStyle = erase_color;
         ctx.fillRect(0,0, cvs.clientWidth, cvs.clientHeight);
     }
 }
