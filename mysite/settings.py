@@ -29,8 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'hoohacks22-janko.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://hoohacks22-janko.herokuapp.com', 'https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://hoohacks22-janko.herokuapp.com']
 
 # Application definition
 
