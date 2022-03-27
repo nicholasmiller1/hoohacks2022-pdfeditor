@@ -61,14 +61,15 @@
     <div class="main">
         <div class="nav-buttons">
             <a class="btn btn-primary" href="{% url 'editpdf:upload' %}">Upload</a>
-            <a class="btn btn-success" href="{% url 'editpdf:export' %}">Export</a>
+            <a id="download-tool"  class="btn btn-success" href="{% url 'editpdf:export' %}">Export</a>
         </div>
         <p> {{ pdf_name }} </p>
         <div width="850" height="1100">
             <canvas id="editor" minWidth="100%" minHeight="100%" onload="draw()">Browser does not support Canvas</canvas>
-            <iframe id="pdf-view" src="/editpdf/templates/editpdf/test.pdf" minWidth="100%"
+            <iframe id="pdf-view" src="{{ pdf_url }}" minWidth="100%"
                 minHeight="100%">
             </iframe>
+            {{ pdf_url }}
         </div>
         
     </div> 
