@@ -1,5 +1,7 @@
-p {
-  font-size: 40;
+.text-tool {
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
 
 #editor {
@@ -42,9 +44,6 @@ table {
   padding: 10px;
 }
 
-
-.text-tool {
-  font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+p {
+  font-size: 16px;
 }

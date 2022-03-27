@@ -3,12 +3,14 @@ var cvs = document.getElementById("editor")
 var ctx = cvs.getContext("2d")
 var pen = document.getElementById("pen-tool")
 var text = document.getElementById("text-tool")
+var eraser = document.getElementById("eraser-tool")
 var curX, curY, prevX, prevY
 var active_tool = 'pen'
 var hasInput = false, painting = false
 
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
+eraser.addEventListener("click", function (e) {active_tool='eraser';})
 //cvs.addEventListener("click", addtext)
 
 cvs.onclick = function(e) {
@@ -19,7 +21,7 @@ cvs.onclick = function(e) {
 }
 
 cvs.onmousedown = function (e) {
-    if (active_tool=='pen') {
+    if (active_tool=='pen' || painting =='eraser') {
         painting = true
         prevX = e.clientX - cvs.offsetLeft;
         prevY = e.clientY - cvs.offsetTop;
@@ -34,8 +36,12 @@ cvs.onmousemove = function (e) {
     if (painting) {
         var crshrX = e.clientX - cvs.offsetLeft;
         var crshrY = e.clientY - cvs.offsetTop;
-        ctx.fillStyle ='#FF0000';
-        ctx.fillRect(crshrX, crshrY, 2, 2);
+        if (active_tool=="pen") {
+            ctx.fillStyle ='#FF0000';
+            ctx.fillRect(crshrX, crshrY, 4, 4);
+        } else if (active_tool=="eraser"){
+            ctx.clearRect(crshrX, crshrY, 5, 5)
+        }
     }
 }
 
@@ -70,6 +76,7 @@ function handleEnter(e) {
 function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.font = '14 px Arial';
+    ctx.font = '18 px Arial';
+    ctx.fillStyle = "#ffffff"
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
 }
