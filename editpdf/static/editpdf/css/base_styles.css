@@ -1,0 +1,45 @@
+p {
+  font-size: 40;
+}
+
+#editor {
+  cursor: crosshair;
+  margin: 0 auto;
+  display: block;
+  border: 2px solid #000000;
+}
+
+.sidebar {
+  height: 100%; 
+  width: 250px; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  background-color: lightslategrey; 
+  overflow-x: hidden; 
+  padding: 20px;
+}
+
+.main {
+  margin-left: 160px; 
+  padding: 0px 10px;
+}
+
+table {
+  margin: 30 px;
+  padding: 10 px;
+}
+
+.tool {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+}
+
+
+.text-tool {
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
