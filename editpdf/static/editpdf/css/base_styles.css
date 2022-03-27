@@ -60,3 +60,13 @@ table {
 p {
   font-size: 16px;
 }
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+footer {
+  position: fixed;
+  bottom:0;
+  width: 100%;
+}
