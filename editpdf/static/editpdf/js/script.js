@@ -9,10 +9,25 @@ var curX, curY, prevX, prevY
 var active_tool = 'pen'
 var hasInput = false, painting = false
 var tool_size = 2
+var pen_color = "#000000"
+var erase_color = "#ffffff"
 
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
 eraser.addEventListener("click", function (e) {active_tool='eraser';})
+
+function cvsColor(color) {
+    if (color.length == 6) {
+        erase_color = '#' + color;
+        ctx.fillRect(0,0, cvs.clientWidth, cvs.clientHeight);
+    }
+}
+
+function toolColor (color ){
+    if (color.length == 6) {
+        pen_color = '#' + color;
+    }
+}
 
 function updateBrushSize (size) {
     tool_size = size;
@@ -99,18 +114,18 @@ cvs.onmousemove = function (e) {
             for (var x = x1; x < x2; x++) {
                 if (steep) {
                     if (active_tool=="pen") {
-                        ctx.fillStyle ='#FF0000';
+                        ctx.fillStyle =pen_color;
                         ctx.fillRect(y, x, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillStyle =erase_color;
                         ctx.fillRect(y, x, tool_size , tool_size );
                     }
                 } else {
                     if (active_tool=="pen") {
-                        ctx.fillStyle ='#FF0000';
+                        ctx.fillStyle =pen_color;
                         ctx.fillRect(x, y, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillStyle =erase_color;
                         ctx.fillRect(x, y, tool_size , tool_size );
                     }
                 }
@@ -162,7 +177,7 @@ function handleEnter(e) {
 function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = pen_color;
     ctx.font = '20px sans-serif';
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
     sendCanvas()
