@@ -31,6 +31,8 @@ cvs.onmousedown = function (e) {
 
 cvs.onmouseup = function (e) {
     painting = false;
+    console.log('test');
+    sendCanvas();
 }
 
 cvs.onmousemove = function (e) {
@@ -144,4 +146,5 @@ function drawText(txt, x, y) {
     ctx.fillStyle = "#000000";
     ctx.font = '20px sans-serif';
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
+    sendCanvas()
 }

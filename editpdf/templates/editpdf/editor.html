@@ -16,12 +16,11 @@
             </tr>
             <h5>Chat</h5>
             <tr>
-                <script src="{% static 'editpdf/js/editor_scripts.js' %}"></script>
-                <textarea id="message-display" cols="50" rows="20"></textarea>
+                <textarea id="message-display" cols="27" rows="20"></textarea>
                 <br/>
-                <input id="message-input" type="text" size="50">
+                <input id="message-input" type="text" size="24">
                 <br/>
-                <button onclick="onClick()">Send</button>
+                <button onclick="sendMessage()">Send</button>
                 {{ pdf_name|json_script:"pdf-name" }}
 
                 <script>
@@ -38,20 +37,37 @@
                 
                   pdfEditSocket.onmessage = function(event) {
                     const data = JSON.parse(event.data);
-                    document.getElementById('message-display').value += (data.message + "\n");
+                    if (data.message != undefined) {
+                      document.getElementById('message-display').value += (data.message + "\n");
+                    }
+
+                    if (data.canvasURL != undefined) {      
+                      var img = new Image;
+                      img.onload = function(){
+                        ctx.drawImage(img,0,0);
+                      };
+                      img.src = data.canvasURL;
+                    }
                   }
                 
                   pdfEditSocket.onclose = function(event) {
                     console.log('Connection closed');
                   }
                 
-                  function onClick() {
+                  function sendMessage() {
                     const messageElement = document.getElementById('message-input')
                     const message = messageElement.value;
                     pdfEditSocket.send(JSON.stringify({
                       'message': message
                     }));
                     messageElement.value = '';
+                  }
+
+                  function sendCanvas() {
+                    console.log('test2');
+                    pdfEditSocket.send(JSON.stringify({
+                      'canvasURL': cvs.toDataURL()
+                    }))
                   }
                 </script>
             </tr>
@@ -68,5 +84,5 @@
 {% endblock %}
 
 {% block scripts %}
-        <script src="{% static 'editpdf/js/script.js' %}"></script>
-    {% endblock %} 
+  <script src="{% static 'editpdf/js/script.js' %}"></script>
+{% endblock %} 
