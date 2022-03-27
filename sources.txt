@@ -1,1 +1,23 @@
+REFERENCES
+
+Title: Paint App in Django
+Author: Nidhin P
+Date: 02/19/14
+Code version: 1.0
+URL: https://github.com/nidhinp/paint-app-in-django
+Software License: N/A
+
+Title: How to embed an input or text area in a canvas element
+Author: user1693593
+Date: 01/09/14
+URL: https://stackoverflow.com/questions/21011931/how-to-embed-an-input-or-textarea-in-a-canvas-element
+Software License: N/A
+
+Title: Hot to CSS Fixed Side bar
+Author: W3 Schools
+Date: N/a
+URL: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp
+Software License: Fair Use
+
 https://channels.readthedocs.io/en/stable/tutorial/part_2.html
+
