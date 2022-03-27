@@ -77,14 +77,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 ASGI_APPLICATION = 'mysite.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379), redis.from_url(os.environ.get("REDIS_URL"))],
-        }
-    }
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [redis.from_url(os.environ.get("REDIS_URL"))],
+#         }
+#     }
+# }
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
