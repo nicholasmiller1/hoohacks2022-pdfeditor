@@ -35,8 +35,5 @@ def upload(request):
     return render(request, 'editpdf/upload.html', {'form': form})
 
 
-class ExportView(generic.TemplateView):
-    template_name = 'editpdf/export.html'
-
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+def export(request):
+    return redirect(reverse("editpdf:upload"))

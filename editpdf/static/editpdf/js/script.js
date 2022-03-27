@@ -15,6 +15,7 @@ var erase_color = "#ffffff"
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
 eraser.addEventListener("click", function (e) {active_tool='eraser';})
+download.addEventListener("click", downloadPNG);
 
 function cvsColor(color) {
     if (color.length == 6) {
@@ -183,11 +184,9 @@ function drawText(txt, x, y) {
     sendCanvas()
 }
 
-function downloadPDF(fileURL, fileName) {
-    var link = document.createElement('a');
-    link.href = fileURL;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+function downloadPNG() {
+    var anchor = document.createElement('a');
+    anchor.href = cvs.toDataURL("image/png");
+    anchor.download = "IMAGE.PNG";
+    anchor.click();
 }
