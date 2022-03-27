@@ -1,16 +1,4 @@
-
-https://channels.readthedocs.io/en/stable/tutorial/part_2.html
-
-https://stackoverflow.com/questions/16041232/django-delete-filefield
-
 REFERENCES
-
-Title: Paint App in Django
-Author: Nidhin P
-Date: 02/19/14
-Code version: 1.0
-URL: https://github.com/nidhinp/paint-app-in-django
-Software License: N/A
 
 Title: How to embed an input or text area in a canvas element
 Author: user1693593
@@ -62,3 +50,6 @@ Date: November 15th, 2016
 Title: How to make a PDF text searchable
 Link: https://www.onelegal.com/blog/how-to-make-a-pdf-text-searchable/
 
+Icons By
+https://fontawesome.com/
+https://icons8.com/icon/hJqm6yrKnkKG/text

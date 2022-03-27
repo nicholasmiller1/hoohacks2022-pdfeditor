@@ -12,20 +12,23 @@ var tool_size = 2
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
 eraser.addEventListener("click", function (e) {active_tool='eraser';})
-//cvs.addEventListener("click", addtext)
+
+function updateBrushSize (size) {
+    tool_size = size;
+}
 
 cvs.onclick = function(e) {
     if (active_tool=='text'){
         if (hasInput) return;
-        addText(e.clientX, e.clientY);
+        addText(e.pageX, e.pageY);
     }
 }
 
 cvs.onmousedown = function (e) {
     if (active_tool!='text') {
         painting = true
-        prevX = e.clientX - cvs.offsetLeft;
-        prevY = e.clientY - cvs.offsetTop;
+        prevX = e.pageX - cvs.offsetLeft;
+        prevY = e.pageY - cvs.offsetTop;
     }
 }
 
@@ -37,8 +40,8 @@ cvs.onmouseup = function (e) {
 cvs.onmousemove = function (e) {
     if (painting) {
         if (painting) {
-            mouseX = e.clientX - this.offsetLeft;
-            mouseY = e.clientY - this.offsetTop;
+            mouseX = e.pageX - this.offsetLeft;
+            mouseY = e.pageY - this.offsetTop;
     
             // find all points between        
             var x1 = mouseX,
@@ -84,14 +87,16 @@ cvs.onmousemove = function (e) {
                         ctx.fillStyle ='#FF0000';
                         ctx.fillRect(y, x, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.clearRect(y, x, tool_size , tool_size );
+                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillRect(y, x, tool_size , tool_size );
                     }
                 } else {
                     if (active_tool=="pen") {
                         ctx.fillStyle ='#FF0000';
                         ctx.fillRect(x, y, tool_size , tool_size );
                     } else if (active_tool=="eraser"){
-                        ctx.clearRect(x, y, tool_size , tool_size );
+                        ctx.fillStyle ='#FFFFFF';
+                        ctx.fillRect(x, y, tool_size , tool_size );
                     }
                 }
     
