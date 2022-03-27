@@ -21,6 +21,10 @@
         </table>
     </div>
     <div class="main">
+        <div class="nav-buttons">
+            <a class="btn btn-primary" href="{% url 'upload' %}">Upload</a>
+            <a class="btn btn-success" href="{% url 'export' %}">Export</a>
+        </div>
         <p> {{ pdf_name }} </p>
         <canvas id="editor" width="850" height="1100" onload="draw()">Browser does not support Canvas</canvas>
     </div>

@@ -15,6 +15,8 @@ cvs.onclick = function(e) {
     if (active_tool=='text'){
         if (hasInput) return;
         addText(e.clientX, e.clientY);
+    } else if (active_tool == 'pen') {
+        ctx.fillRect(e.clientX, e.clientY, 20, 20);
     }
 }
 
