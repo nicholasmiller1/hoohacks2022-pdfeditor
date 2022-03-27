@@ -8,6 +8,7 @@ var download = document.getElementById("download-tool")
 var curX, curY, prevX, prevY
 var active_tool = 'pen'
 var hasInput = false, painting = false
+var tool_size = 2
 
 pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
@@ -48,16 +49,78 @@ cvs.onmouseup = function (e) {
 
 cvs.onmousemove = function (e) {
     if (painting) {
-        var crshrX = e.clientX - cvs.offsetLeft;
-        var crshrY = e.clientY - cvs.offsetTop;
-        if (active_tool=="pen") {
-            ctx.fillStyle ='#FF0000';
-            ctx.fillRect(crshrX, crshrY, crshrX - prevX, crshrY - prevY);
-        } else if (active_tool=="eraser"){
-            ctx.clearRect(crshrX, crshrY, crshrX - prevX, crshrY - prevY)
+        if (painting) {
+            mouseX = e.clientX - this.offsetLeft;
+            mouseY = e.clientY - this.offsetTop;
+    
+            // find all points between        
+            var x1 = mouseX,
+                x2 = prevX,
+                y1 = mouseY,
+                y2 = prevY;
+    
+    
+            var steep = (Math.abs(y2 - y1) > Math.abs(x2 - x1));
+            if (steep){
+                var x = x1;
+                x1 = y1;
+                y1 = x;
+    
+                var y = y2;
+                y2 = x2;
+                x2 = y;
+            }
+            if (x1 > x2) {
+                var x = x1;
+                x1 = x2;
+                x2 = x;
+    
+                var y = y1;
+                y1 = y2;
+                y2 = y;
+            }
+    
+            var dx = x2 - x1,
+                dy = Math.abs(y2 - y1),
+                error = 0,
+                de = dy / dx,
+                yStep = -1,
+                y = y1;
+    
+            if (y1 < y2) {
+                yStep = 1;
+            }
+    
+            for (var x = x1; x < x2; x++) {
+                if (steep) {
+                    if (active_tool=="pen") {
+                        ctx.fillStyle ='#FF0000';
+                        ctx.fillRect(y, x, tool_size , tool_size );
+                    } else if (active_tool=="eraser"){
+                        ctx.clearRect(y, x, tool_size , tool_size );
+                    }
+                } else {
+                    if (active_tool=="pen") {
+                        ctx.fillStyle ='#FF0000';
+                        ctx.fillRect(x, y, tool_size , tool_size );
+                    } else if (active_tool=="eraser"){
+                        ctx.clearRect(x, y, tool_size , tool_size );
+                    }
+                }
+    
+                error += de;
+                if (error >= 0.5) {
+                    y += yStep;
+                    error -= 1.0;
+                }
+            }
+    
+    
+    
+            prevX = mouseX;
+            prevY = mouseY;
+    
         }
-        prevX = crshrX;
-        prevY = crshrY;
     }
 }
 
