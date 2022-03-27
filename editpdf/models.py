@@ -18,6 +18,7 @@ class PdfFile(models.Model):
         if instance_set.exists():
             instance = instance_set.first()
             instance.connectionCount += 1
+            print(instance.connectionCount)
             instance.save()
 
     @classmethod

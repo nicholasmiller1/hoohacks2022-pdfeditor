@@ -14,6 +14,7 @@ class EditConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
 
+        print('test')
         await PdfFile.addConnection(self.group_name)
 
         await self.accept()
