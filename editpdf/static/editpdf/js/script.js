@@ -32,10 +32,10 @@ cvs.onmouseup = function (e) {
 
 cvs.onmousemove = function (e) {
     if (painting) {
-        crshrX = e.clientX - cvs.offsetLeft;
-        crshrY = e.clientY - cvs.offsetTop;
+        var crshrX = e.clientX - cvs.offsetLeft;
+        var crshrY = e.clientY - cvs.offsetTop;
         ctx.fillStyle ='#FF0000';
-        ctx.fillRect(crshrX, crshY, 2, 2);
+        ctx.fillRect(crshrX, crshrY, 2, 2);
     }
 }
 
