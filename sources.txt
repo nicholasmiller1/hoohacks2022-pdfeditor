@@ -1,0 +1,34 @@
+References:
+
+# Django upload fileForm documentation for uploading the pdf:
+link: https://docs.djangoproject.com/en/4.0/topics/http/file-uploads/
+
+# Using tesseract-ocr remotley on heroku. I used the following sections:
+    - Create APT file
+    - Add buildpacks and config file
+By: Shirish Gupta
+Date: May 4th, 2020
+Title: Deploy Python Tesseract OCR on Heroku
+Link: https://towardsdatascience.com/deploy-python-tesseract-ocr-on-heroku-bbcc39391a8d
+
+# Tesseract documentation:
+Link: https://tesseract-ocr.github.io/tessdoc/
+
+# pytesseract documentation:
+Link: https://pypi.org/project/pytesseract/
+
+# Tesseract software used:
+1. https://github.com/UB-Mannheim/tesseract/wiki
+
+# Figuring out how to overlay two pdf documents 
+    - I used post two: 
+Link: https://stackoverflow.com/questions/501723/overlay-one-pdf-or-ps-file-on-top-of-another
+
+# Researching pdf resolution
+By: Richard Heinrich
+Date: November 15th, 2016
+Title: How to make a PDF text searchable
+Link: https://www.onelegal.com/blog/how-to-make-a-pdf-text-searchable/
+
+
+
