@@ -62,10 +62,11 @@ p {
 }
 
 body {
-  padding: 10px;
   font-family: 'Courier New', Courier, monospace;
 }
 
 footer {
+  position: fixed;
+  bottom:0;
   width: 100%;
 }
