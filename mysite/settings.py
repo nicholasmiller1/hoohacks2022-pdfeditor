@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'hoohacks22-janko.herokuapp.com']
 
@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 ASGI_APPLICATION = 'mysite.asgi.application'
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             'hosts': [redis.from_url(os.environ.get("REDIS_URL"))],
-#         }
-#     }
-# }
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [redis.from_url(os.environ.get("REDIS_URL"))],
+        }
+    }
+}
 
 
 # Database
