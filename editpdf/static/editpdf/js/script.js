@@ -21,7 +21,7 @@ cvs.onclick = function(e) {
 }
 
 cvs.onmousedown = function (e) {
-    if (active_tool=='pen' || painting =='eraser') {
+    if (active_tool!='text') {
         painting = true
         prevX = e.clientX - cvs.offsetLeft;
         prevY = e.clientY - cvs.offsetTop;
@@ -38,10 +38,12 @@ cvs.onmousemove = function (e) {
         var crshrY = e.clientY - cvs.offsetTop;
         if (active_tool=="pen") {
             ctx.fillStyle ='#FF0000';
-            ctx.fillRect(crshrX, crshrY, 4, 4);
+            ctx.fillRect(crshrX, crshrY, crshrX - prevX, crshrY - prevY);
         } else if (active_tool=="eraser"){
-            ctx.clearRect(crshrX, crshrY, 5, 5)
+            ctx.clearRect(crshrX, crshrY, crshrX - prevX, crshrY - prevY)
         }
+        prevX = crshrX;
+        prevY = crshrY;
     }
 }
 
@@ -76,7 +78,7 @@ function handleEnter(e) {
 function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.font = '18 px Arial';
-    ctx.fillStyle = "#ffffff"
+    ctx.fillStyle = "#000000";
+    ctx.font = '20px sans-serif';
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
 }
