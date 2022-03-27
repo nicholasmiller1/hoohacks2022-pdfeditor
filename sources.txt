@@ -19,6 +19,12 @@ Date: N/a
 URL: https://www.w3schools.com/howto/howto_css_fixed_sidebar.asp
 Software License: Fair Use
 
+Title: Creating a Realistic Pencil Tool for a painting app wiht html5 canvas
+Author: Loktar
+Date: 04/12/12
+URL: https://stackoverflow.com/questions/10122553/create-a-realistic-pencil-tool-for-a-painting-app-with-html5-canvas
+Software License: N/A
+
 https://channels.readthedocs.io/en/stable/tutorial/part_2.html
 
 # Django upload fileForm documentation for uploading the pdf:
