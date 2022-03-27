@@ -76,7 +76,7 @@ function handleEnter(e) {
 function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.font = '18 px Arial';
-    ctx.fillStyle = "#ffffff"
+    ctx.fillStyle = "#000000";
+    ctx.font = 'bold 48px serif';
     ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
 }
