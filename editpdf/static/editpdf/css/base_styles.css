@@ -7,8 +7,20 @@
 #editor {
   cursor: crosshair;
   margin: 0 auto;
-  display: block;
+  display: inherit;
   border: 2px solid #000000;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+#pdf-view {
+  display: inherit;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 0;
 }
 
 .nav-buttons {
