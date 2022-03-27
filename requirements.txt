@@ -6,6 +6,7 @@ gunicorn
 
 # django-heroku (for hosting django projects on heroku)
 django-heroku
+dj_database_url
 
 # Bootstrap 5 (for styling)
 django-bootstrap-v5

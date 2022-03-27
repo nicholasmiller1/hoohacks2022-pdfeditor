@@ -1,7 +1,20 @@
 {% extends 'editpdf/base.html' %}
+{% load bootstrap5 %}
 
 {% block title %}<title>Upload</title>{% endblock %}
 
 {% block content %}
-    <p> Upload Here </p>
+    <form enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+
+      <legend>
+        <p>Upload PDF Here</p>
+      </legend>
+
+      <fieldset>
+        {% bootstrap_form form %}
+      </fieldset>
+
+      {% buttons submit='Upload' %}{% endbuttons %}
+    </form>
 {% endblock %}

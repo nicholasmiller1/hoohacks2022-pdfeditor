@@ -1,5 +1,7 @@
-p {
-  font-size: 40;
+.text-tool {
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
 
 #editor {
@@ -7,6 +9,11 @@ p {
   margin: 0 auto;
   display: block;
   border: 2px solid #000000;
+}
+
+.nav-buttons {
+  display: inline-flex;
+  padding: auto;
 }
 
 .sidebar {
@@ -22,7 +29,7 @@ p {
 }
 
 .main {
-  margin-left: 160px; 
+  margin-left: 255px; 
   padding: 0px 10px;
 }
 
@@ -37,9 +44,6 @@ table {
   padding: 10px;
 }
 
-
-.text-tool {
-  font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+p {
+  font-size: 16px;
 }
