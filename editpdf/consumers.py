@@ -1,6 +1,8 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 
+from editpdf.models import PdfFile
+
 
 class EditConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -12,6 +14,8 @@ class EditConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
 
+        await PdfFile.addConnection(self.group_name)
+
         await self.accept()
 
     async def disconnect(self, code):
@@ -19,6 +23,12 @@ class EditConsumer(AsyncWebsocketConsumer):
             self.group_name,
             self.channel_name
         )
+
+        count = await PdfFile.getConnections(self.group_name)
+        if (count == 0):
+            await PdfFile.deleteFile(self.group_name)
+        else:
+            await PdfFile.removeConnection(self.group_name)
 
     async def receive(self, text_data):
         data = json.loads(text_data)
