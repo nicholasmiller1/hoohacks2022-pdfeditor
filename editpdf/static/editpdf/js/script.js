@@ -3,12 +3,26 @@ var cvs = document.getElementById("editor")
 var ctx = cvs.getContext("2d")
 var pen = document.getElementById("pen-tool")
 var text = document.getElementById("text-tool")
+var download = document.getElementById("download-tool")
 var curX, curY, prevX, prevY
 var active_tool = 'pen'
 var hasInput = false
 
 pen.addEventListener("click", draw);
 text.addEventListener("click", function (e) {active_tool='text';})
+download.addEventListener("click", function () {
+    var imageURL = cvs.toDataURL("image/png");
+    $.ajax({
+        type: "POST",
+        url: "../python/pdf-export/export.py",
+        data: {
+            param: imageURL,
+        }
+    }).done((o) => {
+        var filename = "output.pdf";
+        download(filename, o);
+    });
+    });
 //cvs.addEventListener("click", addtext)
 
 cvs.onclick = function(e) {
@@ -53,8 +67,16 @@ function drawText(txt, x, y) {
     ctx.fillText(txt, x - 4, y - 4);
 }
 
-
 function draw () {
     active_tool = 'pen';
     ctx.fillText('pen tool', 50, 50);
+}
+
+function dowloadPDF(fileURL, fileName) {
+    var link = document.createElement('a');
+    link.href = fileURL;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
