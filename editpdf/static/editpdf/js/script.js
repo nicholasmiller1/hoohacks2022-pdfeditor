@@ -31,7 +31,6 @@ cvs.onmousedown = function (e) {
 
 cvs.onmouseup = function (e) {
     painting = false;
-    console.log('test');
     sendCanvas();
 }
 

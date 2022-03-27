@@ -64,7 +64,6 @@
                   }
 
                   function sendCanvas() {
-                    console.log('test2');
                     pdfEditSocket.send(JSON.stringify({
                       'canvasURL': cvs.toDataURL()
                     }))
