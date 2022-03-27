@@ -1,4 +1,8 @@
 {% extends 'editpdf/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 {% block title %}<title>Editor</title>{% endblock %}
 {% block content %}
@@ -11,6 +15,7 @@
             </tr>
             <h5>Chat</h5>
             <tr>
+                <script src="{% static 'editpdf/js/editor_scripts.js' %}"></script>
                 <textarea id="message-display" cols="50" rows="20"></textarea>
                 <br/>
                 <input id="message-input" type="text" size="50">
@@ -31,7 +36,5 @@
 {% endblock %}
 
 {% block scripts %}
-        {% load static %}
         <script src="{% static 'editpdf/js/script.js' %}"></script>
-        <script src="{% static 'editpdf/js/editor_scripts.js' %}"></script>
     {% endblock %} 
