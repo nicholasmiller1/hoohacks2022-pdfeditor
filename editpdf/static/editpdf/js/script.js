@@ -5,16 +5,38 @@ var pen = document.getElementById("pen-tool")
 var text = document.getElementById("text-tool")
 var curX, curY, prevX, prevY
 var active_tool = 'pen'
-var hasInput = false
+var hasInput = false, painting = false
 
-pen.addEventListener("click", draw);
+pen.addEventListener("click", function (e) {active_tool='pen';})
 text.addEventListener("click", function (e) {active_tool='text';})
 //cvs.addEventListener("click", addtext)
 
 cvs.onclick = function(e) {
     if (active_tool=='text'){
         if (hasInput) return;
-        addText(e.clientX, e.clientY);
+        addText(e.clientX - cvs.offsetLeft, e.clientY - cvs.offsetTop);
+    }
+}
+
+cvs.onmousedown = function (e) {
+    painting = true
+    if (active_tool=='pen') {
+        if (hold == false) return;
+        prevX = e.clientX - cvs.offsetLeft;
+        prevY = e.clientY - cvs.offsetTop;
+    }
+}
+
+cvs.onmouseup = function (e) {
+    painting = false;
+}
+
+cvs.onmousemove = function (e) {
+    if (painting) {
+        crshrX = e.clientX - cvs.offsetLeft;
+        crshrY = e.clientY - cvs.offsetTop;
+
+        ctx.fillText("black", prevX, prevY, crshrX - prevX, crshrY - prevY);
     }
 }
 
@@ -49,12 +71,6 @@ function handleEnter(e) {
 function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.font = '12 px Arial';
+    ctx.font = '14 px Arial';
     ctx.fillText(txt, x - 4, y - 4);
-}
-
-
-function draw () {
-    active_tool = 'pen';
-    ctx.fillText('pen tool', 50, 50);
 }
