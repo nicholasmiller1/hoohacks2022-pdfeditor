@@ -14,14 +14,13 @@ text.addEventListener("click", function (e) {active_tool='text';})
 cvs.onclick = function(e) {
     if (active_tool=='text'){
         if (hasInput) return;
-        addText(e.clientX - cvs.offsetLeft, e.clientY - cvs.offsetTop);
+        addText(e.clientX, e.clientY);
     }
 }
 
 cvs.onmousedown = function (e) {
-    painting = true
     if (active_tool=='pen') {
-        if (hold == false) return;
+        painting = true
         prevX = e.clientX - cvs.offsetLeft;
         prevY = e.clientY - cvs.offsetTop;
     }
@@ -35,8 +34,8 @@ cvs.onmousemove = function (e) {
     if (painting) {
         crshrX = e.clientX - cvs.offsetLeft;
         crshrY = e.clientY - cvs.offsetTop;
-
-        ctx.fillText("black", prevX, prevY, crshrX - prevX, crshrY - prevY);
+        ctx.fillStyle('#FF0000');
+        ctx.fillRect(prevX, prevY, crshrX - prevX, crshrY - prevY);
     }
 }
 
@@ -72,5 +71,5 @@ function drawText(txt, x, y) {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
     ctx.font = '14 px Arial';
-    ctx.fillText(txt, x - 4, y - 4);
+    ctx.fillText(txt, x - 4 - cvs.offsetLeft, y - 4 - cvs.offsetTop);
 }
