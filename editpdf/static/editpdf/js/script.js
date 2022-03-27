@@ -35,7 +35,7 @@ cvs.onmousemove = function (e) {
         crshrX = e.clientX - cvs.offsetLeft;
         crshrY = e.clientY - cvs.offsetTop;
         ctx.fillStyle ='#FF0000';
-        ctx.fillRect(crshrX, crshY, 2, 2);
+        ctx.fillRect(crshrX, crshrY, 2, 2);
     }
 }
 
