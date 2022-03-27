@@ -1,3 +1,8 @@
+
+https://channels.readthedocs.io/en/stable/tutorial/part_2.html
+
+https://stackoverflow.com/questions/16041232/django-delete-filefield
+
 REFERENCES
 
 Title: Paint App in Django
