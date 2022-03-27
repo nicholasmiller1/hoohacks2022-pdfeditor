@@ -24,11 +24,10 @@ class EditConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
 
+        await PdfFile.removeConnection(self.group_name)
         count = await PdfFile.getConnections(self.group_name)
         if (count == 0):
             await PdfFile.deleteFile(self.group_name)
-        else:
-            await PdfFile.removeConnection(self.group_name)
 
     async def receive(self, text_data):
         data = json.loads(text_data)

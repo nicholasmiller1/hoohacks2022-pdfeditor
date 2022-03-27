@@ -14,16 +14,20 @@ class PdfFile(models.Model):
     @classmethod
     @sync_to_async
     def addConnection(self, pdf_name):
-        instance = self.objects.filter(pdf_name=pdf_name)
-        if instance.exists():
-            instance.first().connectionCount += 1
+        instance_set = self.objects.filter(pdf_name=pdf_name)
+        if instance_set.exists():
+            instance = instance_set.first()
+            instance.connectionCount += 1
+            instance.save()
 
     @classmethod
     @sync_to_async
     def removeConnection(self, pdf_name):
-        instance = self.objects.filter(pdf_name=pdf_name)
-        if instance.exists():
-            instance.first().connectionCount -= 1
+        instance_set = self.objects.filter(pdf_name=pdf_name)
+        if instance_set.exists():
+            instance = instance_set.first()
+            instance.connectionCount -= 1
+            instance.save()
 
     @classmethod
     @sync_to_async
