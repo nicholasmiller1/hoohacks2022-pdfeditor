@@ -14,18 +14,8 @@ def index(request):
 
 
 def editor(request, pdf_name):
-    print(pdf_name)
-    queryset = PdfFile.objects.filter(pdf_name=("pdf_%s" % pdf_name))
-    print(queryset)
-    pdffile = queryset.first()
-    print(pdffile)
-    #try:
-    #    return FileResponse(open(pdf_file, 'rb'), content_type='application/pdf')
-    #except FileNotFoundError:
-    #    raise Http404()
     return render(request, 'editpdf/editor.html', {
-        "pdf_name": pdf_name,
-        "pdf_url": pdffile.pdf_file.name
+        "pdf_name": pdf_name
     })
 
 
@@ -34,7 +24,8 @@ def upload(request):
         form = UploadPdfForm(request.POST, request.FILES)
         if form.is_valid():
             file_name = request.FILES['pdf_file'].name
-            file_name = file_name[:file_name.index('.')].replace(' ', '_').replace(',','')
+            file_name = file_name[:file_name.index('.')].replace(
+                ' ', '_').replace(',', '')
             instance = form.save(commit=False)
             instance.pdf_name = 'pdf_%s' % file_name
             instance.save()

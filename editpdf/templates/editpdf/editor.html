@@ -24,8 +24,8 @@
         </br>
             <h5>Chat</h5>
             <tr>
-                <textarea id="message-display" cols="27" rows="20"></textarea>
-                <br/>
+                <textarea id="message-display" cols="23" rows="15"></textarea>
+                <br/><br/>
                 <input id="message-input" type="text" size="24">
                 <br/>
                 <button onclick="sendMessage()">Send</button>
@@ -86,14 +86,7 @@
             <a id="download-tool"  class="btn btn-success" href="{% url 'editpdf:export' %}">Export</a>
         </div>
         <p> {{ pdf_name }} </p>
-        <div width="850" height="1100">
-            <canvas id="editor" minWidth="100%" minHeight="100%" onload="draw()">Browser does not support Canvas</canvas>
-            <iframe id="pdf-view" src="{{ pdf_url }}" minWidth="100%"
-                minHeight="100%">
-            </iframe>
-            {{ pdf_url }}
-        </div>
-        
+        <canvas id="editor" width="1150" height="550" onload="draw()">Browser does not support Canvas</canvas>
     </div> 
 {% endblock %}
 

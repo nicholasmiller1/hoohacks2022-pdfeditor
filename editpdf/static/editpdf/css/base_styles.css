@@ -4,9 +4,9 @@
   display: inherit;
   border: 2px solid #000000;
   position: absolute;
-  min-width: 100vw;
-  min-height: 100vh;
-  z-index: 0;
+  /* min-width: 100vw;
+  min-height: 100vh; */
+  z-index: 1;
 }
 
 #pdf-view {
@@ -14,7 +14,8 @@
   position: absolute;
   min-width: 100vw;
   min-height: 100vh;
-  z-index: 1;
+  z-index: 0;
+  display: none;
 }
 
 .nav-buttons {
@@ -23,19 +24,20 @@
 }
 
 .sidebar {
-  height: 100%; 
-  width: 250px; 
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 3;
+  top: 0;
   left: 0;
-  background-color: lightslategrey; 
-  overflow-x: hidden; 
+  background-color: lightslategrey;
+  overflow-x: hidden;
   padding: 20px;
+  margin-bottom: 15px;
 }
 
 .main {
-  margin-left: 255px; 
+  margin-left: 310px;
   padding: 0px 10px;
 }
 
@@ -67,6 +69,7 @@ body {
 
 footer {
   position: fixed;
-  bottom:0;
+  bottom: 0;
   width: 100%;
+  z-index: 2
 }
